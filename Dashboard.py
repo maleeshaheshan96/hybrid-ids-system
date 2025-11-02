@@ -266,6 +266,7 @@ if uploaded_file is not None:
                     with col1:
                         st.subheader("Attack Distribution")
                         attack_counts = pd.Series(pred_labels).value_counts()
+                        attack_counts = attack_counts[attack_counts.index != "Label"]
                         st.bar_chart(attack_counts, use_container_width=True)
                         
                         st.write("**Breakdown:**")
