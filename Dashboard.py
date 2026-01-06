@@ -222,7 +222,7 @@ if uploaded_file is not None:
                 st.success(f"Loaded {len(df):,} network flows")
                 
                 with st.expander("Sample of Uploaded Data"):
-                    st.dataframe(df.head(), use_container_width=True)
+                    st.dataframe(df.head(), width='stretch')
                 
                 X_processed = preprocess_data(df, feature_names, scaler)
                 
@@ -267,7 +267,7 @@ if uploaded_file is not None:
                         st.subheader("Attack Distribution")
                         attack_counts = pd.Series(pred_labels).value_counts()
                         attack_counts = attack_counts[attack_counts.index != "Label"]
-                        st.bar_chart(attack_counts, use_container_width=True)
+                        st.bar_chart(attack_counts, width='stretch')
                         
                         st.write("**Breakdown:**")
                         for attack, count in attack_counts.items():
@@ -285,7 +285,7 @@ if uploaded_file is not None:
                         ax.set_ylabel("Number of Samples")
                         ax.set_title("Hybrid AI Confidence Distribution")
                         ax.grid(True, alpha=0.3)
-                        st.pyplot(fig, use_container_width=True)
+                        st.pyplot(fig, width='stretch')
                         plt.close()
                     
                     st.markdown("---")
@@ -306,7 +306,7 @@ if uploaded_file is not None:
                     if high_conf_threats:
                         threat_df = pd.DataFrame(high_conf_threats)
                         st.write(f"🚨 **{len(high_conf_threats)} high-confidence threats detected** (≥{high_conf_threshold:.0%} confidence)")
-                        st.dataframe(threat_df, use_container_width=True)
+                        st.dataframe(threat_df, width='stretch')
                     else:
                         st.info("No high-confidence threats detected.")
                     
@@ -319,7 +319,7 @@ if uploaded_file is not None:
                         'Prediction': pred_labels[:100],
                         'Confidence': [f"{c:.3f}" for c in confidence[:100]]
                     })
-                    st.dataframe(results_df, use_container_width=True)
+                    st.dataframe(results_df, width='stretch')
                     
                     st.markdown("---")
                     
